@@ -12,7 +12,7 @@ extract($_REQUEST);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Andhra Pradesh Deeptipublication Order Form</title>
+<title>Deeptipublication Discount Order Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -208,12 +208,7 @@ footer {
           <td>Transport : </td>
           <td><input name="transport" type="text" class="textuserbox" id="transport" value="<?php echo $address['11'];  ?>" /></td>
         </tr>
-        <tr>
-          <td><span class="colorstar">*</span>Title / S.M Board : </td>
-          <td><input name="board" type="text" required class="textuserbox" id="board" value="<?php echo $address['6'];  ?>"/></td>
-          <td></td>
-          <td></td>
-        </tr>
+        
         <tr>
           <td><span class="colorstar">*</span>Person Name : </td>
           <td><input name="name" type="text" required class="textuserbox" id="name" value="<?php echo $address['7'];  ?>" /></td>
@@ -226,6 +221,12 @@ footer {
           <td><span class="colorstar">*</span>EMail ID :</td>
           <td><input name="email" type="text" required class="textuserbox" id="email" value="<?php echo $address['10'];  ?>" /></td>
         </tr>
+        <tr>
+        <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  
+          <input type="radio" name="board" value="yes" <?php if($address['6'] == 'yes'){ ?>checked<?php } ?>> Yes 
+  <input type="radio" name="board" value="no" <?php if($address['6'] == 'no'){ ?>checked<?php } ?>> No        </td>
+        
+      </tr>
       </table></td>
   </tr>
   <?php   $details = explode(",", $orders["order_details"]); 
