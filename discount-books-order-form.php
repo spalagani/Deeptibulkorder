@@ -265,18 +265,21 @@ footer {
         <td   class="accttrd" align="center" style="font-size:12px"><?php echo $pro[1] ?></td>
         <td   class="accttrd" align="center" style="font-size:12px">
         <select class="discount">
-        	<option>Discount</option>
+        	<option value="0">Discount</option>
 
                 <?php
 		for ($i=20; $i<=70; $i=$i+5){
 		
 	?>
-        	<option><?php echo $i; ?></option>
+        	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
         <?php } ?>
 
         </select>
         </td>
-        <td   class="accttrd" align="center" style="font-size:12px"><?php echo $price[]=$pro[1]*$det['new_price'] ?></td>
+        <td   class="accttrd" align="center" style="font-size:12px">
+        <input type="text" class="itemprice" value="<?php echo $price[]=$pro[1]*$det['new_price'] ?>"/>
+        <input type="hidden" class="itemprice1" value="<?php echo $price[]=$pro[1]*$det['new_price'] ?>"/>
+        </td>
       </tr>
       <?php }} 
 	  ?>
@@ -286,14 +289,8 @@ footer {
     <td><table width="100%">
       <tr align="center" bgcolor="#F3F1D1" class="table_txt" >
         <td width="25%" height="21" align="right" bgcolor="#FFFFFF" ><strong> Total Amount :</strong></td>
-        <td width="13%" align="left" bgcolor="#FFFFFF" ><span >
-          <?php 
-		 foreach($price as $pri)
-		 	$act_price=$act_price+$pri;
-		 
-		 echo $act_price;
-		 
-		 ?>
+        <td width="13%" align="left" bgcolor="#FFFFFF" ><span id="totalval">
+          
         </span></td>
         <td width="44%" align="right" bgcolor="#FFFFFF" ><strong>Number of Copies : </strong></td>
         <td width="11%" align="left" bgcolor="#FFFFFF" ><span style="">
@@ -347,24 +344,42 @@ footer {
     <script src="./supportfiles/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-   $( ".discount" ).change(function() {
+	var $total = 0; 
+	for(i=0; i<$('.itemprice').length; i++){
+		
+		$total += Number($('.itemprice').eq(i).val());
+		//console.log('ITEM VAL',$('.itemprice').eq(i).val());
+		
+	}
+	$('#totalval').text($total);
+   $( ".discount" ).change(function(e) {
+	   var row = $(this).closest('tr');
+	var d = e.target.value;
+	  var x = row.find('.itemprice1').val();
+	  
+	  var y =  row.find('.itemprice');
+	  
+	  z = x - x*(d/100);
+	   y.val(z);
+	
+	//console.log($('.itemprice'));
+	var $total = 0; 
+	for(i=0; i<$('.itemprice').length; i++){
+		
+		$total += Number($('.itemprice').eq(i).val());
+		//console.log('ITEM VAL',$('.itemprice').eq(i).val());
+		
+	}
+	$('#totalval').text($total);
+	//alert($total);
+	
+	  console.log(row)
   //alert( "Discount Calculation" );
-  
-   var x = document.getElementById("mySelect").value;
-    let y = document.getElementById("itemprice").value;
-    let z = document.getElementById("itemprice1").value;
-    document.getElementById("itemprice").value = z*(x/100);
- 
+    //var x = document.getElementById("discount").value;
+    //let y = document.getElementById("itemprice").value;
+   // let z = document.getElementById("itemprice1").value;
+    //document.getElementById("itemprice").value = z*(x/100);
 });
 });
-
-
-
-
-<script>
-function myFunction() {
-   
-}
-</script>
 </script>
  
