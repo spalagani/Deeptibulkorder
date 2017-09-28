@@ -135,6 +135,8 @@ footer {
 </header>
 <?php include("./topnav.php"); ?>
 <div class="container-fluid ">
+<form name="dporderform" action="order-forward-submitted.php?id=<?php echo $id; ?>" method="post">
+
 <?php
 	$s_orders=mysql_query("select * from nile_orders where ran='$id'");
     $sorders=mysql_fetch_array($s_orders);
@@ -156,7 +158,7 @@ footer {
   
    		<?php
 		
-		$q_orders=mysql_query("select * from nile_orders_update where ran='$id'");
+		$q_orders=mysql_query("select * from nile_orders where ran='$id'");
         $orders=mysql_fetch_array($q_orders);
 		
 		$q_ship=mysql_query("select * from nile_shipaddress where order_id='$id'");
@@ -264,10 +266,24 @@ footer {
 		?>          </td>
         <td  class="accttrd" align="center " style="font-size:12px"><?php echo $det['new_price'] ?></td>
         <td   class="accttrd" align="center" style="font-size:12px"><?php echo $pro[1] ?></td>
-        <td   class="accttrd" align="center" style="font-size:12px"><?php echo $pro[2] ?></td>
         <td   class="accttrd" align="center" style="font-size:12px">
-        <input type="text" class="itemprice" readonly value="<?php $dis = $pro[1]*$det['new_price']*$pro[2]/100; echo $price[]=$pro[1]*$det['new_price']-$dis; ?>"/>
+        <select class="discount" name="dis[]">
+        	<option value="0">Discount</option>
+
+                <?php
+		for ($i=20; $i<=70; $i=$i+5){
+		
+	?>
+        	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+        <?php } ?>
+
+        </select>
+        </td>
+        <td   class="accttrd" align="center" style="font-size:12px">
+        <input type="text" class="itemprice" value="<?php echo $price[]=$pro[1]*$det['new_price'] ?>"/>
         <input type="hidden" class="itemprice1" value="<?php echo $price[]=$pro[1]*$det['new_price'] ?>"/>
+        <input type="hidden" name="bookid[]" class="itemid" value="<?php echo $det['item_id']  ?>"/>
+        <input type="hidden" name="copies[]" class="copies" value="<?php echo $pro[1] ?>"/>
         </td>
       </tr>
       <?php }} 
@@ -279,6 +295,7 @@ footer {
       <tr align="center" bgcolor="#F3F1D1" class="table_txt" >
         <td width="25%" height="21" align="right" bgcolor="#FFFFFF" ><strong> Total Amount :</strong></td>
         <td width="13%" align="left" bgcolor="#FFFFFF" ><span id="totalval">
+         <input type="hidden" name="totalvalinput" id="totalvalinput" class="" value=""/>
           
         </span></td>
         <td width="44%" align="right" bgcolor="#FFFFFF" ><strong>Number of Copies : </strong></td>
@@ -291,7 +308,7 @@ footer {
       </tr>
       <tr  bgcolor="#FFFFFF" align="center" class="table_txt" >
         <td height="21" colspan="4" align="right" >&nbsp;</td>
-        <td width="7%" height="21" align="left" valign="middle" style="">&nbsp;</td>
+        <td width="7%" height="21" align="left" valign="middle" style=""><input type="submit" class="button" value="Update Order">&nbsp;</td>
       </tr>
     </table></td>
   </tr>
@@ -308,6 +325,7 @@ footer {
     <div><a href="/order-search.php">Search Another Order ID</a></div>
 </div>
 <?php } ?>
+</form>
 </div>
 <footer class="">
 <div class="container-fluid">
@@ -360,6 +378,7 @@ $(document).ready(function(){
 		
 	}
 	$('#totalval').text($total);
+	$('#totalvalinput').val($total);
 	//alert($total);
 	
 	  console.log(row)
