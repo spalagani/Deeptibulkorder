@@ -14,7 +14,7 @@ $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Karnataka Deepti Publications Order Form</title>
+<title>Deepti Publications Karnataka Order Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -129,7 +129,7 @@ footer {
 
 <body>
 <header class="container-fluid">
-    <div class="col-md-6 text-right"><a href="/"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></a></div>
+    <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
     <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Karnataka Order Form</h2></div>
 </header>
 <?php include("./topnav.php"); ?>
@@ -237,7 +237,7 @@ footer {
     <td></td>
   </tr>
   <?php 
-  $andhratextsjrintersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '33'");
+  $andhratextsjrintersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '33' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextsjrintersql);
 //echo $numrows;
@@ -261,7 +261,7 @@ while($data1=mysql_fetch_array($andhratextsjrintersql)) {
     <td></td>
   </tr>
    <?php 
-  $andhratextssrintersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '34'");
+  $andhratextssrintersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '34' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextssrintersql);
 //echo $numrows;
@@ -285,7 +285,7 @@ while($data1=mysql_fetch_array($andhratextssrintersql)) {
     <td></td>
   </tr>
     <?php 
-  $andhratextsbsc1intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '35'");
+  $andhratextsbsc1intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '35' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextsbsc1intersql);
 //echo $numrows;
@@ -309,7 +309,7 @@ while($data1=mysql_fetch_array($andhratextsbsc1intersql)) {
     <td></td>
   </tr>
   <?php 
-  $andhratextsbsc2intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '36'");
+  $andhratextsbsc2intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '36' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextsbsc2intersql);
 //echo $numrows;
@@ -339,7 +339,7 @@ while($data1=mysql_fetch_array($andhratextsbsc2intersql)) {
     <td></td>
   </tr>
    <?php 
-  $andhratextsbsc3intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '37'");
+  $andhratextsbsc3intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '37' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextsbsc3intersql);
 //echo $numrows;
@@ -363,7 +363,7 @@ while($data1=mysql_fetch_array($andhratextsbsc3intersql)) {
     <td></td>
   </tr>
     <?php 
-  $andhraemcetsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '38'");
+  $andhraemcetsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '38' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraemcetsql);
 //echo $numrows;
@@ -394,7 +394,7 @@ while($data1=mysql_fetch_array($andhraemcetsql)) {
   </tr>
   
      <?php 
-  $andhrajeesql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '39'");
+  $andhrajeesql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '39' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhrajeesql);
 //echo $numrows;
@@ -418,7 +418,7 @@ while($data1=mysql_fetch_array($andhrajeesql)) {
     <td></td>
   </tr>
      <?php 
-  $andhraothersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '40'");
+  $andhraothersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '40' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraothersql);
 //echo $numrows;
@@ -436,7 +436,7 @@ while($data1=mysql_fetch_array($andhraothersql)) {
   </tr>
 <?php $i++; } ?>
 <?php 
-  $andhraESMsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '28'");
+  $andhraESMsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '28' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraESMsql);
 //echo $numrows;
@@ -447,7 +447,7 @@ while($data1=mysql_fetch_array($andhraESMsql)) {
 ?>
 <?php $i++; } ?>
   <?php 
-  $andhraJIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '29'");
+  $andhraJIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '29' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraJIsql);
 //echo $numrows;
@@ -458,7 +458,7 @@ while($data1=mysql_fetch_array($andhraJIsql)) {
 ?>
 <?php $i++; } ?>
   <?php 
-  $andhraSRsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '30'");
+  $andhraSRsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '30' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraSRsql);
 //echo $numrows;
@@ -469,7 +469,7 @@ while($data1=mysql_fetch_array($andhraSRsql)) {
 ?>
 <?php $i++; } ?>
   <?php 
-  $andhraSMSSJIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '31'");
+  $andhraSMSSJIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '31' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraSMSSJIsql);
 //echo $numrows;
@@ -480,7 +480,7 @@ while($data1=mysql_fetch_array($andhraSMSSJIsql)) {
 ?>
 <?php $i++; } ?>
   <?php 
-  $andhraSMSSSIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '32'");
+  $andhraSMSSSIsql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '32' and status='1'");
 //echo $sql;
   $numrows = mysql_num_rows($andhraSMSSSIsql);
 //echo $numrows;

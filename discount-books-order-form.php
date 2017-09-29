@@ -12,7 +12,7 @@ extract($_REQUEST);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deeptipublication Discount Order Form</title>
+<title>Deepti Publications Discount Order Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -128,7 +128,7 @@ footer {
 <body>
 <header class="container-fluid">
     <div>
-    <div class="col-md-6 text-right"><a href="/"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></a></div>
+    <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
     <div class="col-md-6 text-left"><h2  style="color: #2e3289;">View Order Form</h2></div>
     </div>
    
@@ -186,40 +186,40 @@ footer {
         
         <tr>
           <td width="29%"><span class="colorstar">*</span>Shop / College / Others : </td>
-          <td width="26%"><input name="shopname" type="text"readonly class="textuserbox" id="shopname" value="<?php echo $address['0'];  ?>" /></td>
-          <td width="16%"></td>
-          <td width="29%"></td>
+          <td width="26%"><input name="shopname" type="text" readonly class="textuserbox" id="shopname" value="<?php echo $address['0'];  ?>" /></td>
+        <td width="17%">Date :</td>
+        <td width="31%"><input name="orderdate" type="text" class="textuserbox" id="orderdate" value="<?php echo $ship['date']; ?>" readonly /></td>
         </tr>
         <tr>
           <td><span class="colorstar">*</span>Address :  </td>
           <td><input name="address" type="text" readonly class="textuserbox" id="address" value="<?php echo $address['1'];  ?>" /></td>
           <td><span class="colorstar">*</span>City / Town :  </td>
-          <td><input name="city" type="text" class="textuserbox" id="city" value="<?php echo $address['2'];  ?>" /></td>
+          <td><input name="city" type="text" class="textuserbox" id="city" readonly value="<?php echo $address['2'];  ?>" /></td>
         </tr>
         <tr>
           <td><span class="colorstar">*</span>Postal Code : </td>
-          <td><input name="postalcode" type="text" class="textuserbox" id="postalcode" value="<?php echo $address['4'];  ?>" /></td>
+          <td><input name="postalcode" type="text" class="textuserbox" readonly id="postalcode" value="<?php echo $address['4'];  ?>" /></td>
           <td><span class="colorstar">*</span>District :</td>
-          <td><input name="district" type="text" required class="textuserbox" id="district" value="<?php echo $address['3'];  ?>" /></td>
+          <td><input name="district" type="text" required class="textuserbox" readonly id="district" value="<?php echo $address['3'];  ?>" /></td>
         </tr>
         <tr>
           <td><span class="colorstar">*</span>State : </td>
-          <td><input name="state" type="text" required class="textuserbox" id="state" value="<?php echo $address['5'];  ?>" /></td>
+          <td><input name="state" type="text" readonly class="textuserbox" id="state" value="<?php echo $address['5'];  ?>" /></td>
           <td>Transport : </td>
-          <td><input name="transport" type="text" class="textuserbox" id="transport" value="<?php echo $address['11'];  ?>" /></td>
+          <td><input name="transport" type="text" readonly class="textuserbox" id="transport" value="<?php echo $address['11'];  ?>" /></td>
         </tr>
         
         <tr>
           <td><span class="colorstar">*</span>Person Name : </td>
-          <td><input name="name" type="text" required class="textuserbox" id="name" value="<?php echo $address['7'];  ?>" /></td>
+          <td><input name="name" type="text" required readonly class="textuserbox" id="name" value="<?php echo $address['7'];  ?>" /></td>
           <td>Land Line : </td>
-          <td><input name="landline" type="text"  class="textuserbox" id="landline" value="<?php echo $address['8'];  ?>" /></td>
+          <td><input name="landline" type="text"  readonly class="textuserbox" id="landline" value="<?php echo $address['8'];  ?>" /></td>
         </tr>
         <tr>
           <td><span class="colorstar">*</span>Mobile :  </td>
-          <td><input name="mobile" type="text" required class="textuserbox" id="mobile" value="<?php echo $address['9'];  ?>"/></td>
+          <td><input name="mobile" type="text" required readonly class="textuserbox" id="mobile" value="<?php echo $address['9'];  ?>"/></td>
           <td><span class="colorstar">*</span>EMail ID :</td>
-          <td><input name="email" type="text" required class="textuserbox" id="email" value="<?php echo $address['10'];  ?>" /></td>
+          <td><input name="email" type="text" required readonly class="textuserbox" id="email" value="<?php echo $address['10'];  ?>" /></td>
         </tr>
         <tr>
         <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  

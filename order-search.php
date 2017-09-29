@@ -11,7 +11,7 @@ $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Andhra Pradesh Deeptipublication Order Form</title>
+<title>Deepti Publications Order Search Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -133,7 +133,7 @@ function idsearch(){
 <body>
 <header class="container-fluid">
     <div>
-    <div class="col-md-6 text-right"><a href="/"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></a></div>
+    <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
     <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Order Form</h2></div>
     </div>
    

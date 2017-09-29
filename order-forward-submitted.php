@@ -1,11 +1,24 @@
 <?php
 include('includes/dbconfig.php');
+//include('phpmail/class.phpmailer.php');
+//include('phpmail/class.smtp.php');
+//require_once("phpmail/class.phpmailer.php");
+/*
+	$mail = new phpmailer();
+	$mail->From = $From_Email;
+	$mail->FromName = $From_Name;
+	$mail->IsHTML(true);
+	$mail->Subject = "DeeptiPublications Order form:- ".$order_id;
+	$mail->Body = $Mail_Body;
+	$mail->AddAddress($row_ci->'india2sree@gmail.com',$row_ci->ship_to);
+	$mail->send();
+*/	
 $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 //echo $_REQUEST['copies'][0];
 //echo $_REQUEST['bookid'][0];
 $cnt =  count($_REQUEST['copies']);
 $order_date =  $_REQUEST['orderdate'];
-echo $ran =  $_GET['id'];
+ $ran =  $_GET['id'];
 //$statename = $_REQUEST['statename'];
 /////////////////Order Processing////////////////////
 
@@ -19,13 +32,16 @@ for($i=0; $i<=$cnt ;$i++){
 	//echo "Discount :".$_REQUEST['dis'][$i];
 	
 	//echo "</br>";
-	echo  $order_details.= $_REQUEST['bookid'][$i]."|".$_REQUEST['copies'][$i]."|".$_REQUEST['dis'][$i].",";
-	echo "</br>";
+	 $order_details.= $_REQUEST['bookid'][$i]."|".$_REQUEST['copies'][$i]."|".$_REQUEST['dis'][$i].",";
+	//echo "</br>";
 }
 
 $order_details = substr($order_details,0,-1);
 
-mysql_query("INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');") or die(mysql_error());
+//echo "INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');";
+//exit;
+
+//mysql_query("INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');") or die(mysql_error());
 //$order_id=mysql_insert_id();
 
 //Order End
@@ -44,12 +60,42 @@ $address = $_SESSION["ShipingInfo"]["name"]."|".$_SESSION["ShipingInfo"]["addres
 //Shipping End
 */
 
+
+//SMS Integration
+
+function curl($url)
+{
+	//echo "Enter CURL";
+	//echo "http://sms.sriservers.com/sendsms?uname=dporderform&pwd=order$5&senderid=DEEPTI&to=9246402455&msg=HI&route=T";
+ $ch = curl_init();
+ curl_setopt($ch, CURLOPT_URL, $url);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+ $data = curl_exec($ch);
+ curl_close($ch);
+ return $data;
+}
+$mobile = "9246402455"; //enter Mobile numbers comma seperated
+$username = "dporderform"; //your username
+$password = "order$5"; //your password
+$sender = "DEEPTI"; //Your senderid
+$username = urlencode($username);
+$password = urlencode($password);
+$sender = urlencode($sender);
+$messagecontent = "Welcome to deepti "; //Type Of Your Message
+$message = urlencode($messagecontent);
+$url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
+//echo $url;
+$response = curl($url); 
+
+
 ?>
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Andhra Pradesh Deeptipublication Order Form</title>
+<title>Deepti Publications Updated Order Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -165,7 +211,7 @@ footer {
 <body>
 <header class="container-fluid">
     <div>
-    <div class="col-md-6 text-right"><a href="/"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></a></div>
+    <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
     <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Order Form</h2></div>
     </div>
    
@@ -173,8 +219,9 @@ footer {
 <?php include("./topnav.php"); ?>
 <div class="container-fluid text-center">
 <div>Order Id <?php echo $ran; ?></div>
-<div>Order Submitted Successfully</div><div>Our Deepti Publications Executive will call you back before processing the order</div>
-<div><a href="http://www.dporders.com">Back to Home</a></div>
+<div>Order Updated with Discount Successfully</div>
+<div><a href="discount-books-order-form.php?id=<?php echo $ran; ?>">View Discount Order Form</a></div>
+<div><a href="index.php">Back to Home</a></div>
 </div>
 <footer class="">
 <div class="container-fluid">

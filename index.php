@@ -62,7 +62,7 @@ footer {
 
 <div class="container-fluid">
 	<div class="col-md-4 text-center"  style="">
-    	<a href="andhra-pradesh-books-order-form.php"><img src="images/andhra72.gif"  style="width: 83%;bottom: 0px;"/><div style="
+    	<a href="andhra-pradesh-order-form.php"><img src="images/andhra72.gif"  style="width: 83%;bottom: 0px;"/><div style="
     font-size: 23px;
     color: blue;
     font-weight: 500;

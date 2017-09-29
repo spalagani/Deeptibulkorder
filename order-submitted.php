@@ -97,7 +97,9 @@ mail($to,$subject,$message,$headers);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Andhra Pradesh Deeptipublication Order Form</title>
+<title>Deepti Publications Confirm Order Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -213,7 +215,7 @@ footer {
 <body>
 <header class="container-fluid">
     <div>
-    <div class="col-md-6 text-right"><a href="/"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></a></div>
+    <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
     <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Order Form</h2></div>
     </div>
    
@@ -222,7 +224,7 @@ footer {
 <div class="container-fluid text-center">
 <div>Order Id <?php echo $ran; ?></div>
 <div>Order Submitted Successfully</div><div>Our Deepti Publications Executive will call you back before processing the order</div>
-<div><a href="http://www.dporders.com">Back to Home</a></div>
+<div><a href="index.php">Back to Home</a></div>
 </div>
 <footer class="">
 <div class="container-fluid">
