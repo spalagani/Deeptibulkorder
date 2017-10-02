@@ -10,7 +10,7 @@ extract($_REQUEST);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Andhra Pradesh Deeptipublication Order Form</title>
+<title>Deepti Publications Order Print</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -108,7 +108,7 @@ footer {
 	<table width="" border="0" cellspacing="0" cellpadding="0" align="center">
 
   <tr>
-    <td width="750" align="center" valign="middle" class="title_txt" background="images/long_bar1.jpg" height="26" ><strong stlye="font-size:18px"><?php echo $sorders['c_name'] ?>&nbsp;Order History </strong></td>
+    <td width="750" align="center" valign="middle" class="title_txt" background="images/long_bar1.jpg" height="26" ><strong stlye="font-size:18px"><?php echo $sorders['c_name'] ?>&nbsp;Order Print </strong></td>
   </tr>
   <tr>
     <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="left"> <strong>Your Order Number :</strong> <strong>

@@ -199,14 +199,14 @@ footer {
       </tr>
       <tr>
         <td><span class="colorstar">*</span>Mobile :           </td>
-        <td><input name="mobile" type="text" required class="textuserbox" id="mobile" /></td>
+        <td><input name="mobile" type="text" required class="textuserbox" id="mobile"  pattern="[1-9]{1}[0-9]{9}"/></td>
         <td><span class="colorstar">*</span>EMail ID :</td>
-        <td><input name="email" type="text" required class="textuserbox" id="email" /></td>
+        <td><input name="email" type="email" required class="textuserbox" id="email" /></td>
       </tr>
       <tr>
         <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  
-          <input type="radio" name="board" value="yes"> Yes 
-  <input type="radio" name="board" value="no"> No        </td>
+          <input type="radio" name="board" value="yes" required="required" > Yes 
+  <input type="radio" name="board" value="no" required="required" > No        </td>
         
       </tr>
     </table></td>
