@@ -1,12 +1,25 @@
 <?php
 include('includes/dbconfig.php');
+//include('phpmail/class.phpmailer.php');
+//include('phpmail/class.smtp.php');
+//require_once("phpmail/class.phpmailer.php");
+/*
+	$mail = new phpmailer();
+	$mail->From = $From_Email;
+	$mail->FromName = $From_Name;
+	$mail->IsHTML(true);
+	$mail->Subject = "DeeptiPublications Order form:- ".$order_id;
+	$mail->Body = $Mail_Body;
+	$mail->AddAddress($row_ci->'india2sree@gmail.com',$row_ci->ship_to);
+	$mail->send();
+*/	
 $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 //echo $_REQUEST['copies'][0];
 //echo $_REQUEST['bookid'][0];
 $cnt =  count($_REQUEST['copies']);
 $order_date =  $_REQUEST['orderdate'];
-$ran =  $_REQUEST['ordernumber'];
-$statename = $_REQUEST['statename'];
+ $ran =  $_GET['id'];
+//$statename = $_REQUEST['statename'];
 /////////////////Order Processing////////////////////
 
 $order_details = "";
@@ -15,32 +28,38 @@ for($i=0; $i<=$cnt ;$i++){
 	//echo "Copies :".$_REQUEST['copies'][$i];
 	//echo " | ";
 	//echo "Books :".$_REQUEST['bookid'][$i];
+	//echo " | ";
+	//echo "Discount :".$_REQUEST['dis'][$i];
 	
 	//echo "</br>";
-	 $order_details.= $_REQUEST['bookid'][$i]."|".$_REQUEST['copies'][$i].",";
+	 $order_details.= $_REQUEST['bookid'][$i]."|".$_REQUEST['copies'][$i]."|".$_REQUEST['dis'][$i].",";
+	//echo "</br>";
 }
 
 $order_details = substr($order_details,0,-1);
 
-mysql_query("INSERT INTO nile_orders (user_id, ran, order_details, order_date, order_total, order_status, c_name) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0', '$statename');") or die(mysql_error());
-$order_id=mysql_insert_id();
+//echo "INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');";
+//exit;
+
+//mysql_query("INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');") or die(mysql_error());
+//$order_id=mysql_insert_id();
 
 //Order End
 
-
+/*
 /////////////////Shipping Address////////////////////
-//$address = $_SESSION["ShipingInfo"]["name"]."|".$_SESSION["ShipingInfo"]["address"]."|".$_SESSION["ShipingInfo"]["city"]."|".$_SESSION["ShipingInfo"]["state"]."|".$_SESSION["ShipingInfo"]["country"]."|".$_SESSION["ShipingInfo"]["zipcode"]."|".$_SESSION["ShipingInfo"]["phone"];
+$address = $_SESSION["ShipingInfo"]["name"]."|".$_SESSION["ShipingInfo"]["address"]."|".$_SESSION["ShipingInfo"]["city"]."|".$_SESSION["ShipingInfo"]["state"]."|".$_SESSION["ShipingInfo"]["country"]."|".$_SESSION["ShipingInfo"]["zipcode"]."|".$_SESSION["ShipingInfo"]["phone"];
 
-$address = $_REQUEST['shopname']."|".$_REQUEST['address']."|".$_REQUEST['city']."|".$_REQUEST['district']."|".$_REQUEST['postalcode']."|".$_REQUEST['state']."|".$_REQUEST['board']."|".$_REQUEST['name']."|".$_REQUEST['landline']."|".$_REQUEST['mobile']."|".$_REQUEST['email']."|".$_REQUEST['transport'];
+//$address = $_REQUEST['shopname']."|".$_REQUEST['address']."|".$_REQUEST['city']."|".$_REQUEST['district']."|".$_REQUEST['postalcode']."|".$_REQUEST['state']."|".$_REQUEST['board']."|".$_REQUEST['name']."|".$_REQUEST['landline']."|".$_REQUEST['mobile']."|".$_REQUEST['email']."|".$_REQUEST['transport'];
 
 
-	mysql_query("INSERT INTO nile_shipaddress (order_id, address, date) VALUES ('$ran', '$address', now())") 
+	//mysql_query("INSERT INTO nile_shipaddress (order_id, address, date) VALUES ('$ran', '$address', now())") 
 	or die(mysql_error());
 
 
 //Shipping End
+*/
 
-//exit;
 
 //e-Mail To Customer
 
@@ -154,6 +173,7 @@ $message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="ce
         <td width="21%" height="15"><font class="accttrtext">Category</font></td>
         <td width="7%" height="15"> Price</td>
         <td width="9%"><font class="accttrtext"> Copies</font></td>
+        <td width="12%"><font class="accttrtext"> Discount (%)</font></td>
 
         <td width="21%" height="15"><font class="accttrtext">Total</font></td>
         <!--<td width="17%" height="25"><font class="accttrtext">Tracking No</font></td>-->
@@ -173,11 +193,13 @@ $message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="ce
 	$totprice += $price;
 	$q_subcat=mysql_query("select * from  nile_sub_category where sub_cat_id=$det[sub_cat_id]");
 		$subcat=mysql_fetch_array($q_subcat);
+	
       $message.='<tr>
         <td class="accttrd" align="" style="font-size:12px">'. $det['item_name'] .'         </td>
         <td  class="accttrd" align="center" style="font-size:12px">'.$subcat['sub_cat_name'].'</td>
         <td  class="accttrd" align="center " style="font-size:10px">'. $det['new_price'] .'</td>
         <td   class="accttrd" align="center" style="font-size:10px">'. $pro[1].'</td>
+        <td   class="accttrd" align="center" style="font-size:10px">'. $pro[2] .'</td>
         <td   class="accttrd" align="center" style="font-size:10px">'.$price.'
         </td>
       </tr>';
@@ -216,7 +238,7 @@ $mail->Password = $password;
 $mail->IsHTML(true);
 $mail->SetFrom($replyEmail, $fromName);
 $mail->AddReplyTo($replyEmail,$fromName);
-$mail->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
 $mail->Body = $message;
 $mail->AddAddress($email1);
 $mail->send();
@@ -234,7 +256,7 @@ $mail1->Password = $password;
 $mail1->IsHTML(true);
 $mail1->SetFrom($replyEmail, $fromName);
 $mail1->AddReplyTo($replyEmail,$fromName);
-$mail1->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail1->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
 $mail1->Body = $message;
 $mail1->AddAddress("deeptipublications@gmail.com");
 $mail1->send();
@@ -251,29 +273,14 @@ $mail2->Password = $password;
 $mail2->IsHTML(true);
 $mail2->SetFrom($replyEmail, $fromName);
 $mail2->AddReplyTo($replyEmail,$fromName);
-$mail2->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail2->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
 $mail2->Body = $message;
 $mail2->AddAddress("india2sree@gmail.com");
 $mail2->send();
-	
-	/*
-$mail = new PHPMailer(); // create a new object
-$mail->IsSMTP(); // enable SMTP
-$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-$mail->SMTPAuth = true; // authentication enabled
-$mail->SMTPSecure = 'tls';
-$mail->Host = "smtp.gmail.com";
-$mail->Port = 587;
-$mail->Username = "deeptipublications@gmail.com";  
-$mail->Password = "aqyzlyvcqrjzpymi";   
-$mail->IsHTML(true);
-$mail->SetFrom("deeptipublications@gmail.com");
-$mail->Subject = "Deepti Publications $statename Order Form - $ran ";
-$mail->Body = $message;
-$mail->AddAddress("india2sree@gmail.com");
-	
-	*/
-	
+
+
+//SMS Integration
+
 //SMS 
 
 function curl($url)
@@ -288,13 +295,13 @@ function curl($url)
  return $data;
 }
 $mobile = "$mobile1"; //enter Mobile numbers comma seperated
-$username = ""; //your username
-$password = ""; //your password
+$username = "dporderform"; //your username
+$password = "order$5"; //your password
 $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear $name1, Thank you for placing order. Order No : $ran, Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677"; //Type Of Your Message
+$messagecontent = "Dear $name1, Your Order ($ran) Updated with Discount. Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677"; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -302,13 +309,13 @@ $response = curl($url);
 
 
 $mobile = "9030535453,9848128465"; //enter Mobile numbers comma seperated
-$username = ""; //your username
-$password = ""; //your password
+$username = "dporderform"; //your username
+$password = "order$5"; //your password
 $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear Sir, We Recieved $statename Order Form. Order No : $ran, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
+$messagecontent = "Dear Sir, Order Updated with Discount. Order No : $ran, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -320,7 +327,7 @@ $response = curl($url);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Deepti Publications Confirm Order Form</title>
+<title>Deepti Publications Updated Order Form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Latest compiled and minified CSS -->
@@ -446,7 +453,8 @@ footer {
 <?php include("./topnav.php"); ?>
 <div class="container-fluid text-center">
 <div>Order Id <?php echo $ran; ?></div>
-<div>Order Submitted Successfully</div><div>Our Deepti Publications Executive will call you back before processing the order</div>
+<div>Order Updated with Discount Successfully</div>
+<div><a href="discount-books-order-form.php?id=<?php echo $ran; ?>">View Discount Order Form</a></div>
 <div><a href="index.php">Back to Home</a></div>
 </div>
 <footer class="">

@@ -41,56 +41,279 @@ $address = $_REQUEST['shopname']."|".$_REQUEST['address']."|".$_REQUEST['city'].
 //Shipping End
 
 //exit;
-//email start
-$mainemail = 'deeptipublications@gmail.com';
-//$to = $_REQUEST['email'];
-$to = 'india2sree@gmail.com';
-$subject = $ran.' DeeptiPublication Order Form';
 
-/*$headers = "From: " . strip_tags($mainemail) . "\r\n";
-$headers .= "Reply-To: ". strip_tags($mainemail) . "\r\n";
-$headers .= "CC: deeptipublications@gmail.com\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-$message = '<html><body>';
-$message .= '<h1>Deepti Publications Order Form Message</h1>';
-$message .= '</body></html>';
-
-mail($to, $subject, $message, $headers);*/
+//e-Mail To Customer
 
 
-//$to = "somebody@example.com, somebodyelse@example.com";
-//$subject = "HTML email";
+$q_orders=mysql_query("select * from nile_orders where ran='$ran'");
+        $orders=mysql_fetch_array($q_orders);
+		
+		$q_ship=mysql_query("select * from nile_shipaddress where order_id='$ran'");
+        $ship=mysql_fetch_array($q_ship);
+		$address=explode("|",$ship['address']);
+		
+		
+		$qry_user=mysql_query("select * from nile_user where username='$orders[user_id]'");
+		$user_info=mysql_fetch_array($qry_user);
+		
+		//print_r($address);
+          foreach($address as $value) { 
+	    //echo $value."<br>";
+	  }
+	   	 $dateview = $orders['order_date'];
+		 $shopname = $address['0'] ;	 
+		 $address1 = $address['1'];  
+		 $city1  = $address['2'];  
+		 $postalcode1 = $address['4'];  
+		 $district1 = $address['3'];  
+		 $state1 = $address['5'];  
+		 $transport1 = $address['11'];  
+		 $name1 = $address['7'];  
+		 $landline1 = $address['8'];  
+		 $mobile1 = $address['9'];  
+		 $email1 = $address['10'];  
+		 $board1 = $address['6']; 
 
-$message = "<html>
-<head>
-<title>DeeptiPublication Order Form</title>
-</head>
-<body>
-<p>DeeptiPublication Order Form</p>
-<table>
-<tr>
-<th>DeeptiPublication Order Form</th>
-<th>DeeptiPublication Order Form</th>
-</tr>
-<tr>
-<td>DeeptiPublication Order Form</td>
-<td>DeeptiPublication Order Form</td>
-</tr>
+	require_once("class.phpmailer.php");
+	
+	
+	
+	
+$message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="center">
+
+  <tr>
+    <td width="750" align="center" valign="middle" class="title_txt" background="images/long_bar1.jpg" height="26" ><strong stlye="font-size:18px">&nbsp;Order History </strong></td>
+  </tr>
+  <tr>
+    <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="left"> <strong>Your Order Number : '.$ran.'</strong></td>
+  </tr>
+ 
+  
+  <tr>
+    <td  align=""><strong><font class="protab_txt">Shipped To :</font></strong></td>
+  </tr>
+  <tr>
+    <td align="left" class="cart-txt" style="font-size:12px"><font class="cart-txt ">
+      <table width="100%" align="center"  cellspacing="" class="contable">
+        <col width="52">
+        <col width="481">
+        <col width="88">
+        <col width="101">
+        
+        <tr>
+          <td width="29%"><span class="colorstar">*</span>Shop / College / Others : </td>
+          <td width="26%">'.$shopname.'</td>
+        <td width="17%">Date :</td>
+        <td width="31%">'.$dateview.'</td>
+        </tr>
+        <tr>
+          <td><span class="colorstar">*</span>Address :  </td>
+          <td>'.$address1.'</td>
+          <td><span class="colorstar">*</span>City / Town :  </td>
+          <td>'.$city1.'</td>
+        </tr>
+        <tr>
+          <td><span class="colorstar">*</span>Postal Code : </td>
+          <td>'.$postalcode1.'</td>
+          <td><span class="colorstar">*</span>District :</td>
+          <td>'.$district1.'</td>
+        </tr>
+        <tr>
+          <td><span class="colorstar">*</span>State : </td>
+          <td>'.$state1.'</td>
+          <td>Transport : </td>
+          <td>'.$transport1.'</td>
+        </tr>
+        
+        <tr>
+          <td><span class="colorstar">*</span>Person Name : </td>
+          <td>'.$name1.'</td>
+          <td>Land Line : </td>
+          <td>'.$landline1.'</td>
+        </tr>
+        <tr>
+          <td><span class="colorstar">*</span>Mobile :  </td>
+          <td>'.$mobile1.'</td>
+          <td><span class="colorstar">*</span>EMail ID :</td>
+          <td>'.$email1.'</td>
+        </tr>
+        <tr>
+        <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  
+          '.$board1.'       </td>
+        
+      </tr>
+      </table></td>
+  </tr>';
+  
+  
+ $details = explode(",", $orders["order_details"]); 
+  $message.='<tr>
+    <td  align="center"><table cellspacing="0" cellpadding="0" border="1" width="99%" class="acborder">
+      <tr align="center" valign="middle" bgcolor="orange" class="protab_txt">
+        <td width="30%" height="15"><font class="accttrtext">Product Name</font></td>
+        <td width="21%" height="15"><font class="accttrtext">Category</font></td>
+        <td width="7%" height="15"> Price</td>
+        <td width="9%"><font class="accttrtext"> Copies</font></td>
+
+        <td width="21%" height="15"><font class="accttrtext">Total</font></td>
+        <!--<td width="17%" height="25"><font class="accttrtext">Tracking No</font></td>-->
+      </tr>';
+	  $totalqty = '';
+	  $totprice = '';
+	  foreach($details as $p_det) {
+	  $pro=explode("|",$p_det);
+	  $q_det=mysql_query("select * from nile_items where item_id='$pro[0]'");
+	  $det=mysql_fetch_array($q_det);
+	  if($pro[1]){
+		$totalqty +=  $pro[1];	
+		
+		         $dis = $pro[1]*$det['new_price']*$pro[2]/100; 
+		         $price=$pro[1]*$det['new_price']-$dis; 
+	
+	$totprice += $price;
+	$q_subcat=mysql_query("select * from  nile_sub_category where sub_cat_id=$det[sub_cat_id]");
+		$subcat=mysql_fetch_array($q_subcat);
+      $message.='<tr>
+        <td class="accttrd" align="" style="font-size:12px">'. $det['item_name'] .'         </td>
+        <td  class="accttrd" align="center" style="font-size:12px">'.$subcat['sub_cat_name'].'</td>
+        <td  class="accttrd" align="center " style="font-size:10px">'. $det['new_price'] .'</td>
+        <td   class="accttrd" align="center" style="font-size:10px">'. $pro[1].'</td>
+        <td   class="accttrd" align="center" style="font-size:10px">'.$price.'
+        </td>
+      </tr>';
+	  }}
+    $message.='</table></td>
+  </tr>
+  <tr>
+    <td>Total Quantity : '.$totalqty.'</td>
+    
+  </tr>
+  <tr>
+    <td>Total Amount : '.$totprice.'</td>
+    
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
 </table>
-</body>
-</html>
-";
+' ; 
 
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$replyEmail = "deeptipublications@gmail.com";
+$fromName = "Deepti Publications";
+$username = "deeptipublications@gmail.com";
+$password = "aqyzlyvcqrjzpymi";
 
-// More headers
-$headers .= 'From: <webmaster@example.com>' . "\r\n";
-$headers .= 'Cc: myboss@example.com' . "\r\n";
 
-mail($to,$subject,$message,$headers);
+$mail = new PHPMailer(); // create a new object
+$mail->IsSMTP(); // enable SMTP
+$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail->SMTPAuth = true; // authentication enabled
+$mail->SMTPSecure = 'ssl';
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 465;
+$mail->Username = $username;  
+$mail->Password = $password;   
+$mail->IsHTML(true);
+$mail->SetFrom($replyEmail, $fromName);
+$mail->AddReplyTo($replyEmail,$fromName);
+$mail->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail->Body = $message;
+$mail->AddAddress($email1);
+$mail->send();
+
+
+$mail1 = new PHPMailer(); // create a new object
+$mail1->IsSMTP(); // enable SMTP
+$mail1->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail1->SMTPAuth = true; // authentication enabled
+$mail1->SMTPSecure = 'ssl';
+$mail1->Host = "smtp.gmail.com";
+$mail1->Port = 465;
+$mail1->Username = $username;  
+$mail1->Password = $password;   
+$mail1->IsHTML(true);
+$mail1->SetFrom($replyEmail, $fromName);
+$mail1->AddReplyTo($replyEmail,$fromName);
+$mail1->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail1->Body = $message;
+$mail1->AddAddress("deeptipublications@gmail.com");
+$mail1->send();
+	
+$mail2 = new PHPMailer(); // create a new object
+$mail2->IsSMTP(); // enable SMTP
+$mail2->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail2->SMTPAuth = true; // authentication enabled
+$mail2->SMTPSecure = 'ssl';
+$mail2->Host = "smtp.gmail.com";
+$mail2->Port = 465;
+$mail2->Username = $username;  
+$mail2->Password = $password;   
+$mail2->IsHTML(true);
+$mail2->SetFrom($replyEmail, $fromName);
+$mail2->AddReplyTo($replyEmail,$fromName);
+$mail2->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail2->Body = $message;
+$mail2->AddAddress("india2sree@gmail.com");
+$mail2->send();
+	
+	/*
+$mail = new PHPMailer(); // create a new object
+$mail->IsSMTP(); // enable SMTP
+$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail->SMTPAuth = true; // authentication enabled
+$mail->SMTPSecure = 'tls';
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 587;
+$mail->Username = "deeptipublications@gmail.com";  
+$mail->Password = "aqyzlyvcqrjzpymi";   
+$mail->IsHTML(true);
+$mail->SetFrom("deeptipublications@gmail.com");
+$mail->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail->Body = $message;
+$mail->AddAddress("india2sree@gmail.com");
+	
+	*/
+	
+//SMS 
+
+function curl($url)
+{
+	//echo "Enter CURL";
+	//echo "http://sms.sriservers.com/sendsms?uname=dporderform&pwd=order$5&senderid=DEEPTI&to=9246402455&msg=HI&route=T";
+ $ch = curl_init();
+ curl_setopt($ch, CURLOPT_URL, $url);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+ $data = curl_exec($ch);
+ curl_close($ch);
+ return $data;
+}
+$mobile = "$mobile1"; //enter Mobile numbers comma seperated
+$username = "dporderform"; //your username
+$password = "order$5"; //your password
+$sender = "DEEPTI"; //Your senderid
+$username = urlencode($username);
+$password = urlencode($password);
+$sender = urlencode($sender);
+$messagecontent = "Dear $name1, Thank you for placing order. Order No : $ran, Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677"; //Type Of Your Message
+$message = urlencode($messagecontent);
+$url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
+//echo $url;
+$response = curl($url); 
+
+
+$mobile = "9030535453,9848128465"; //enter Mobile numbers comma seperated
+$username = "dporderform"; //your username
+$password = "order$5"; //your password
+$sender = "DEEPTI"; //Your senderid
+$username = urlencode($username);
+$password = urlencode($password);
+$sender = urlencode($sender);
+$messagecontent = "Dear Sir, We Recieved $statename Order Form. Order No : $ran, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
+$message = urlencode($messagecontent);
+$url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
+//echo $url;
+$response = curl($url); 
+
 
 ?>
 <!doctype html>

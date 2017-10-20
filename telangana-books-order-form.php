@@ -23,6 +23,8 @@ $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="validation-OrderForm.js" type="application/javascript"></script>
+
 <!-- Bootstrap core CSS -->
     <link href="./supportfiles/bootstrap.min.css" rel="stylesheet">
 
@@ -135,7 +137,7 @@ footer {
 <?php include("./topnav.php"); ?>
 <div class="container-fluid">
 
-<form name="dporderform" action="order-submitted.php" method="post">
+<form name="dporderform" action="order-submitted.php" onsubmit="return(validate());" method="post">
 
 <table  cellpadding="5" cellspacing="5" align="center">
   <col width="52">
@@ -165,46 +167,46 @@ footer {
       </tr>
       <tr>
         <td><span class="colorstar">*</span>Shop / College / Others :          </td>
-        <td><input name="shopname" type="text" required class="textuserbox" id="shopname" />
+        <td><input name="shopname" type="text"  class="textuserbox" id="shopname" />
         <input name="statename" type="hidden" value="Telangana State"/></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
         <td><span class="colorstar">*</span>Address :           </td>
-        <td><input name="address" type="text" required class="textuserbox" id="address" /></td>
+        <td><input name="address" type="text"  class="textuserbox" id="address" /></td>
         <td><span class="colorstar">*</span>City / Town :           </td>
-        <td><input name="city" type="text" required class="textuserbox" id="city" /></td>
+        <td><input name="city" type="text"  class="textuserbox" id="city" /></td>
       </tr>
       <tr>
         <td><span class="colorstar">*</span>Postal Code :          </td>
-        <td><input name="postalcode" type="text" required class="textuserbox" id="postalcode" /></td>
+        <td><input name="postalcode" type="text"  class="textuserbox" id="postalcode" /></td>
         <td><span class="colorstar">*</span>District :</td>
-        <td><input name="district" type="text" required class="textuserbox" id="district" /></td>
+        <td><input name="district" type="text"  class="textuserbox" id="district" /></td>
       </tr>
       <tr>
         <td><span class="colorstar">*</span>State :          </td>
-        <td><input name="state" type="text" required class="textuserbox" id="state" /></td>
+        <td><input name="state" type="text"  class="textuserbox" id="state" /></td>
         <td>Transport : </td>
         <td><input name="transport" type="text" class="textuserbox" id="transport" /></td>
       </tr>
       
       <tr>
         <td><span class="colorstar">*</span>Person Name :          </td>
-        <td><input name="name" type="text" required class="textuserbox" id="name" /></td>
+        <td><input name="name" type="text"  class="textuserbox" id="name" /></td>
         <td>Land Line : </td>
         <td><input name="landline" type="text"  class="textuserbox" id="landline" /></td>
       </tr>
       <tr>
         <td><span class="colorstar">*</span>Mobile :           </td>
-        <td><input name="mobile" type="text" required class="textuserbox" id="mobile" pattern="[1-9]{1}[0-9]{9}"/></td>
+        <td><input name="mobile" type="text"  class="textuserbox" id="mobile" pattern="[1-9]{1}[0-9]{9}"/></td>
         <td><span class="colorstar">*</span>EMail ID :</td>
-        <td><input name="email" type="email" required class="textuserbox" id="email" /></td>
+        <td><input name="email" type="email"  class="textuserbox" id="email" /></td>
       </tr>
       <tr>
         <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  
-          <input type="radio" name="board" value="yes" required="required" > Yes 
-  <input type="radio" name="board" value="no" required="required" > No        </td>
+          <input type="radio" name="board" value="yes"  > Yes 
+  <input type="radio" name="board" value="no"  > No        </td>
         
       </tr>
     </table></td>
