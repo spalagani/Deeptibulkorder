@@ -1,0 +1,1 @@
+<div style="font-size: 18px;font-weight: bold;color: red;"><span style="color: black;">Note:</span><span> THIS ORDER FORM IS ONLY FOR "BULK PURCHASES"</span></div>

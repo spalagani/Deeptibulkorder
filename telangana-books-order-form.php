@@ -14,7 +14,7 @@ $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deepti Publications Telangana State Order Form</title>
+<title>Deepti Publications Telangana State Bulk Order Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -132,7 +132,8 @@ footer {
 <body>
 <header class="container-fluid">
     <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
-    <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Telangana State Order Form</h2></div>
+    <div class="col-md-6 text-left">
+      <h2  style="color: #2e3289;">Telangana State Bulk Order Form</h2></div>
 </header>
 <?php include("./topnav.php"); ?>
 <div class="container-fluid">
@@ -219,7 +220,7 @@ footer {
   <col width="88">
   <col width="101">
   <tr>
-    <td colspan="4" style="background-color:#FF3A00; text-align:center; color:white;"><strong>TELANGANA STATE ORDER FORM 2017-18</strong></td>
+    <td colspan="4" style="background-color:#FF3A00; text-align:center; color:white;"><strong>TELANGANA STATE BULK ORDER FORM 2017-18</strong></td>
     </tr>
   <tr>
     <td></td>
@@ -722,8 +723,8 @@ while($data1=mysql_fetch_array($andhraSMSSSIsql)) {
   
   </tr>
   <tr>
-    <td colspan="2">&nbsp;</td>
-    <td colspan="2"><input type="submit" class="button" value="Place Order"></td>
+<td colspan="2"><?php include("./note.php"); ?></td>
+<td colspan="2"><input type="submit" class="button" value="Place Order"></td>
   </tr>
         </table>
     </td>

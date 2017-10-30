@@ -11,7 +11,7 @@ $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deepti Publications Order Search Form</title>
+<title>Deepti Publications Contact Us</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -122,12 +122,6 @@ footer {
 
 
 </style>
-<script type="javascript" >
-function idsearch(){
-	alert("search");
-	return false;
-}
-</script>
 </head>
 
 <body>
@@ -140,18 +134,13 @@ function idsearch(){
    
 </header>
 <?php include("./topnav.php"); ?>
-<div class="container text-center">
-<div style="width: 320px;padding-bottom: 100px;text-align: center;">
-<h3>Order Search</h3>
-<form name="idsearch" action="view-books-order-form.php" method="get">
-       <div class="input-group">
-      <input type="text" name="id" required class="form-control" pattern="\d*" placeholder="Enter Order Number..">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-    </form>
-   </div>
+<div class="container-fluid text-center">
+<h3>Address</h3>
+        <div>22-7-38, Kothapet, TENALI - 522201</div>
+        <div>Andhra Pradesh</div>
+        <div>Email : deeptipublications@gmail.com</div>
+         <div>Land Line : +91 (08644) 228465, 227677</div>
+        <div>Mobile Number : 09848128465</div>
 </div>
 
 <footer class="">

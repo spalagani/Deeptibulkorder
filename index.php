@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deepti Publications Order Form</title>
+<title>Deepti Publications Bulk Order Form</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -120,7 +120,8 @@ footer {
 <body>
 <header class="container-fluid">
     <div class="col-md-6 text-right"><img src="http://www.deeptipublications.com/image/catalog/Deepti-Publication-Logo.jpg" alt="Deepti Publications - Tenali" style="width: 40%;"></div>
-    <div class="col-md-6 text-left"><h2  style="color: #2e3289;">Order Form</h2></div>
+    <div class="col-md-6 text-left">
+      <h2  style="color: #2e3289;">Bulk Order Form</h2></div>
 </header>
 <?php include("./topnav.php"); ?>
 <div class="container-fluid">
@@ -129,11 +130,12 @@ footer {
     font-size: 23px;
     color: blue;
     font-weight: 500;
-">Andhra Pradesh</div><div style="
+">Andhra Pradesh</div>
+    	<div style="
     font-size: 20px;
     font-weight: 500;
     color: #045f7d;
-">Order Form</div><div style="
+">Bulk Order Form</div><div style="
     font-size: 18px;
     /* color: red; */
 ">Click Here</div></a>
@@ -143,11 +145,12 @@ footer {
     font-size: 23px;
     color: blue;
     font-weight: 500;
-">Telangana State</div><div style="
+">Telangana State</div>
+    <div style="
     font-size: 20px;
     font-weight: 500;
     color: #045f7d;
-">Order Form</div><div style="
+">Bulk Order Form</div><div style="
     font-size: 18px;
     /* color: red; */
 ">Click Here</div></a>
@@ -157,11 +160,12 @@ footer {
     font-size: 23px;
     color: blue;
     font-weight: 500;
-">Karnataka</div><div style="
+">Karnataka</div>
+    <div style="
     font-size: 20px;
     font-weight: 500;
     color: #045f7d;
-">Order Form</div><div style="
+">Bulk Order Form</div><div style="
     font-size: 18px;
     /* color: red; */
 ">Click Here</div></a>

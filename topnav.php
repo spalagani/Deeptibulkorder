@@ -15,12 +15,12 @@ $currURL =  $_SERVER['REQUEST_URI'];
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li ><a href="./index.php">Home</a></li>
-            <li <?php if($currURL == '/andhra-pradesh-order-form.php'){ ?>class="active" <?php } ?>><a href="andhra-pradesh-order-form.php">Andhra Pradesh Order Form</a></li>
-            <li <?php if($currURL == '/telangana-books-order-form.php'){ ?>class="active" <?php } ?>><a href="telangana-books-order-form.php">Telangana State Order Form</a></li>
-            <li <?php if($currURL == '/karnataka-books-order-form.php'){ ?>class="active" <?php } ?>><a href="karnataka-books-order-form.php">Karnataka Order Form</a></li>
+            <li ><a href="http://www.deeptipublications.com">Home</a></li>
+            <li <?php if($currURL == '/andhra-pradesh-order-form.php'){ ?>class="active" <?php } ?>><a href="andhra-pradesh-order-form.php">Andhra Pradesh Bulk Order Form</a></li>
+            <li <?php if($currURL == '/telangana-books-order-form.php'){ ?>class="active" <?php } ?>><a href="telangana-books-order-form.php">Telangana State Bulk Order Form</a></li>
+            <li <?php if($currURL == '/karnataka-books-order-form.php'){ ?>class="active" <?php } ?>><a href="karnataka-books-order-form.php">Karnataka Bulk Order Form</a></li>
             <li <?php if($currURL == '/order-search.php'){ ?>class="active" <?php } ?>><a href="order-search.php">View Order</a></li>
-            <li <?php if($currURL == '/deepthipublication-contact-us.php'){ ?>class="active" <?php } ?>><a href="/deepthipublication-contact-us.php"/deepthipublication-contact-us.php>Contact Us</a></li>
+            <li <?php if($currURL == '/deeptipublications-contact-us.php'){ ?>class="active" <?php } ?>><a href="/deeptipublications-contact-us.php">Contact Us</a></li>
             
            
           </ul>

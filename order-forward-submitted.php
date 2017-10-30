@@ -8,7 +8,7 @@ include('includes/dbconfig.php');
 	$mail->From = $From_Email;
 	$mail->FromName = $From_Name;
 	$mail->IsHTML(true);
-	$mail->Subject = "DeeptiPublications Order form:- ".$order_id;
+	$mail->Subject = "DeeptiPublications Bulk Order form:- ".$order_id;
 	$mail->Body = $Mail_Body;
 	$mail->AddAddress($row_ci->'india2sree@gmail.com',$row_ci->ship_to);
 	$mail->send();
@@ -41,7 +41,7 @@ $order_details = substr($order_details,0,-1);
 //echo "INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');";
 //exit;
 
-//mysql_query("INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');") or die(mysql_error());
+mysql_query("INSERT INTO nile_orders_update (user_id, ran, order_details, order_date, order_total, order_status) VALUES ('$_SESSION[uname]', '$ran', '$order_details', now(), '$Amount', '0');") or die(mysql_error());
 //$order_id=mysql_insert_id();
 
 //Order End
@@ -64,7 +64,8 @@ $address = $_SESSION["ShipingInfo"]["name"]."|".$_SESSION["ShipingInfo"]["addres
 //e-Mail To Customer
 
 
-$q_orders=mysql_query("select * from nile_orders where ran='$ran'");
+$q_orders=mysql_query("select * from nile_orders_update where ran='$ran'");
+//echo "select * from nile_orders_update where ran='$ran'";
         $orders=mysql_fetch_array($q_orders);
 		
 		$q_ship=mysql_query("select * from nile_shipaddress where order_id='$ran'");
@@ -99,10 +100,14 @@ $q_orders=mysql_query("select * from nile_orders where ran='$ran'");
 	
 	
 $message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="center">
-
+<tr>
+    <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="center" style="background-color:#f4efae"> <img src="http://www.dporderform.com/deeptiaddress.jpg" width="400px" height="113"/></td>
+  </tr>
   <tr>
     <td width="750" align="center" valign="middle" class="title_txt" background="images/long_bar1.jpg" height="26" ><strong stlye="font-size:18px">&nbsp;Order History </strong></td>
   </tr>
+   
+  
   <tr>
     <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="left"> <strong>Your Order Number : '.$ran.'</strong></td>
   </tr>
@@ -166,6 +171,7 @@ $message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="ce
   
   
  $details = explode(",", $orders["order_details"]); 
+ //print_r($details);
   $message.='<tr>
     <td  align="center"><table cellspacing="0" cellpadding="0" border="1" width="99%" class="acborder">
       <tr align="center" valign="middle" bgcolor="orange" class="protab_txt">
@@ -238,7 +244,7 @@ $mail->Password = $password;
 $mail->IsHTML(true);
 $mail->SetFrom($replyEmail, $fromName);
 $mail->AddReplyTo($replyEmail,$fromName);
-$mail->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
+$mail->Subject = "Deepti Publications $statename Updated Bulk Order Form - $ran ";
 $mail->Body = $message;
 $mail->AddAddress($email1);
 $mail->send();
@@ -256,27 +262,11 @@ $mail1->Password = $password;
 $mail1->IsHTML(true);
 $mail1->SetFrom($replyEmail, $fromName);
 $mail1->AddReplyTo($replyEmail,$fromName);
-$mail1->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
+$mail1->Subject = "Deepti Publications $statename Updated Bulk Order Form - $ran ";
 $mail1->Body = $message;
 $mail1->AddAddress("deeptipublications@gmail.com");
 $mail1->send();
 	
-$mail2 = new PHPMailer(); // create a new object
-$mail2->IsSMTP(); // enable SMTP
-$mail2->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-$mail2->SMTPAuth = true; // authentication enabled
-$mail2->SMTPSecure = 'ssl';
-$mail2->Host = "smtp.gmail.com";
-$mail2->Port = 465;
-$mail2->Username = $username;  
-$mail2->Password = $password;   
-$mail2->IsHTML(true);
-$mail2->SetFrom($replyEmail, $fromName);
-$mail2->AddReplyTo($replyEmail,$fromName);
-$mail2->Subject = "Deepti Publications $statename Updated Order Form - $ran ";
-$mail2->Body = $message;
-$mail2->AddAddress("india2sree@gmail.com");
-$mail2->send();
 
 
 //SMS Integration
@@ -301,7 +291,7 @@ $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear $name1, Your Order ($ran) Updated with Discount. Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677"; //Type Of Your Message
+$messagecontent = "Dear $name1, Your Bulk Order ($ran) Updated with Discount.  Amount : $totprice, Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677. e-Mail : deeptipublications@gmail.com, Website : www.deeptipublications.com"; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -315,7 +305,7 @@ $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear Sir, Order Updated with Discount. Order No : $ran, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
+$messagecontent = "Dear Sir, Bulk Order Updated with Discount. Order No : $ran, Amount : $totprice, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -454,8 +444,8 @@ footer {
 <div class="container-fluid text-center">
 <div>Order Id <?php echo $ran; ?></div>
 <div>Order Updated with Discount Successfully</div>
-<div><a href="discount-books-order-form.php?id=<?php echo $ran; ?>">View Discount Order Form</a></div>
-<div><a href="index.php">Back to Home</a></div>
+<div><a href="discount-books-order-form.php?id=<?php echo $ran; ?>">View Discount Bulk Order Form</a></div>
+<div><a href="http://www.deeptipublications.com">Back to Home</a></div>
 </div>
 <footer class="">
 <div class="container-fluid">

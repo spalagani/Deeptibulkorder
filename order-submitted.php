@@ -80,10 +80,13 @@ $q_orders=mysql_query("select * from nile_orders where ran='$ran'");
 	
 	
 $message = '<table width="" border="0" cellspacing="0" cellpadding="0" align="center">
-
+<tr>
+    <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="center" style="background-color:#f4efae"> <img src="http://www.dporderform.com/deeptiaddress.jpg" width="400px" height="113"/></td>
+  </tr>
   <tr>
     <td width="750" align="center" valign="middle" class="title_txt" background="images/long_bar1.jpg" height="26" ><strong stlye="font-size:18px">&nbsp;Order History </strong></td>
   </tr>
+   
   <tr>
     <td height="5" class="orange_txt" style="font-size:13px; font-weight:normal" align="left"> <strong>Your Order Number : '.$ran.'</strong></td>
   </tr>
@@ -216,7 +219,7 @@ $mail->Password = $password;
 $mail->IsHTML(true);
 $mail->SetFrom($replyEmail, $fromName);
 $mail->AddReplyTo($replyEmail,$fromName);
-$mail->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail->Subject = "Deepti Publications $statename Bulk Order Form - $ran ";
 $mail->Body = $message;
 $mail->AddAddress($email1);
 $mail->send();
@@ -234,27 +237,12 @@ $mail1->Password = $password;
 $mail1->IsHTML(true);
 $mail1->SetFrom($replyEmail, $fromName);
 $mail1->AddReplyTo($replyEmail,$fromName);
-$mail1->Subject = "Deepti Publications $statename Order Form - $ran ";
+$mail1->Subject = "Deepti Publications $statename Bulk Order Form - $ran ";
 $mail1->Body = $message;
 $mail1->AddAddress("deeptipublications@gmail.com");
 $mail1->send();
 	
-$mail2 = new PHPMailer(); // create a new object
-$mail2->IsSMTP(); // enable SMTP
-$mail2->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-$mail2->SMTPAuth = true; // authentication enabled
-$mail2->SMTPSecure = 'ssl';
-$mail2->Host = "smtp.gmail.com";
-$mail2->Port = 465;
-$mail2->Username = $username;  
-$mail2->Password = $password;   
-$mail2->IsHTML(true);
-$mail2->SetFrom($replyEmail, $fromName);
-$mail2->AddReplyTo($replyEmail,$fromName);
-$mail2->Subject = "Deepti Publications $statename Order Form - $ran ";
-$mail2->Body = $message;
-$mail2->AddAddress("india2sree@gmail.com");
-$mail2->send();
+
 	
 	/*
 $mail = new PHPMailer(); // create a new object
@@ -294,7 +282,7 @@ $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear $name1, Thank you for placing order. Order No : $ran, Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677"; //Type Of Your Message
+$messagecontent = "Dear $name1, Thank you for placing bulk order. Order No : $ran, Amount : $totprice, Date : $dateview  -- DEEPTI PUBLICATIONS - TENALI.  Ph: (08644)228465,227677. e-Mail : deeptipublications@gmail.com, Website : www.deeptipublications.com"; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -308,7 +296,7 @@ $sender = "DEEPTI"; //Your senderid
 $username = urlencode($username);
 $password = urlencode($password);
 $sender = urlencode($sender);
-$messagecontent = "Dear Sir, We Recieved $statename Order Form. Order No : $ran, Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1 "; //Type Of Your Message
+$messagecontent = "Dear Sir, We Recieved $statename Bulk Order Form. Order No : $ran, Amount : $totprice and Date : $dateview From $shopname($name1,$mobile1), Landline : $landline1. "; //Type Of Your Message
 $message = urlencode($messagecontent);
 $url="http://sms.sriservers.com/sendsms?uname=$username&pwd=$password&senderid=$sender&to=$mobile&msg=$message&route=T";
 //echo $url;
@@ -320,7 +308,7 @@ $response = curl($url);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Deepti Publications Confirm Order Form</title>
+<title>Deepti Publications Confirm Bulk Order Form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Latest compiled and minified CSS -->
@@ -447,7 +435,7 @@ footer {
 <div class="container-fluid text-center">
 <div>Order Id <?php echo $ran; ?></div>
 <div>Order Submitted Successfully</div><div>Our Deepti Publications Executive will call you back before processing the order</div>
-<div><a href="index.php">Back to Home</a></div>
+<div><a href="http://www.deeptipublications.com">Back to Home</a></div>
 </div>
 <footer class="">
 <div class="container-fluid">
