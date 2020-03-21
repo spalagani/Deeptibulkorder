@@ -136,7 +136,7 @@ footer {
 </header>
 <?php include("./topnav.php"); ?>
 <div class="container-fluid">
-<form name="dporderform" action="order-submitted.php" onsubmit="return(validate());" method="post">
+<form name="dporderform" action="order-book-bl.php" onsubmit="return(validate());" method="post">
 
 <table  cellpadding="5" cellspacing="5" align="center">
   <col width="52">
@@ -158,58 +158,26 @@ footer {
       <col width="101">
        <tr>
         <td width="27%">ORDER NO :</td>
-        <td width="25%"><input name="ordernumber" type="text" class="textuserbox" id="ordernumber" value="<?php echo $date->format('Ydms');
- ?>" readonly /></td>
+        <td width="25%"><input name="ordernumber" type="text" class="textuserbox" id="ordernumber" value="<?php echo $date->format('ydmHis');
+ ?>" readonly />
+          <input name="statename" type="hidden" value="Karnataka"/></td>
         <td width="17%">Date :</td>
         <td width="31%"><input name="orderdate" type="text" class="textuserbox" id="orderdate" value="<?php echo $date->format('d-m-Y');
  ?>" readonly /></td>
       </tr>
       <tr>
-        <td><span class="colorstar">*</span>Shop / College / Others :          </td>
-        <td><input name="shopname" type="text"  class="textuserbox" id="shopname" />
-        <input name="statename" type="hidden" value="Karnataka"/></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="colorstar">*</span>Address :           </td>
-        <td><input name="address" type="text"  class="textuserbox" id="address" /></td>
-        <td><span class="colorstar">*</span>City / Town :           </td>
-        <td><input name="city" type="text"  class="textuserbox" id="city" /></td>
-      </tr>
-      <tr>
-        <td><span class="colorstar">*</span>Postal Code :          </td>
-        <td><input name="postalcode" type="text"  class="textuserbox" id="postalcode" /></td>
-        <td><span class="colorstar">*</span>District :</td>
-        <td><input name="district" type="text"  class="textuserbox" id="district" /></td>
-      </tr>
-      <tr>
-        <td><span class="colorstar">*</span>State :          </td>
-        <td><input name="state" type="text"  class="textuserbox" id="state" /></td>
-        <td>Transport : </td>
-        <td><input name="transport" type="text" class="textuserbox" id="transport" /></td>
-      </tr>
-      
-      <tr>
-        <td><span class="colorstar">*</span>Person Name :          </td>
-        <td><input name="name" type="text"  class="textuserbox" id="name" /></td>
-        <td>Land Line : </td>
-        <td><input name="landline" type="phone"  class="textuserbox" id="landline" /></td>
-      </tr>
-      <tr>
-        <td><span class="colorstar">*</span>Mobile :           </td>
-        <td><input name="mobile" type="tel"  class="textuserbox" id="mobile" pattern="[1-9]{1}[0-9]{9}"/></td>
-        <td><span class="colorstar">*</span>EMail ID :</td>
-        <td><input name="email" type="email"  class="textuserbox" id="email" /></td>
-      </tr>
-      <tr>
         <td colspan="4"><span class="colorstar">*</span>College Name on Cover Page of Study Materials Required :  
           <input type="radio" name="board" value="yes"  > Yes 
-  <input type="radio" name="board" value="no"  > No        </td>
+          <input type="radio" name="board" value="no"  > No        </td>
         
       </tr>
     </table></td>
   </tr>
+  
+  <tr>
+  <td colspan="4"><span class="colorstar">NOTE : PRICES ARE SUBJECT TO CHANGE WITH OUT PRIOR NOTICE.</span></td>
+  </tr>
+
   <tr>
     <td colspan="4">
     	<table class="contable" align="center" border="1"  cellspacing="5" width="100%" >
@@ -218,7 +186,7 @@ footer {
   <col width="88">
   <col width="101">
   <tr>
-    <td colspan="4" style="background-color:#FF3A00; text-align:center; color:white;"><strong>KARNATAKA BULK ORDER FORM 2017-18</strong></td>
+    <td colspan="4" style="background-color:#FF3A00; text-align:center; color:white;"><strong>KARNATAKA BULK ORDER FORM <?php echo $financial_year = (date('Y')); ?></strong></td>
     </tr>
   <tr>
     <td></td>
@@ -287,7 +255,7 @@ while($data1=mysql_fetch_array($andhratextssrintersql)) {
     <td></td>
   </tr>
     <?php 
-  $andhratextsbsc1intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '35' and status='1'");
+  $andhratextsbsc1intersql = mysql_query("SELECT * FROM  `nile_items` WHERE  `cat_id` =  '29' AND  `sub_cat_id` =  '35' and status='1' ORDER BY `sort_id`");
 //echo $sql;
   $numrows = mysql_num_rows($andhratextsbsc1intersql);
 //echo $numrows;
@@ -511,28 +479,19 @@ while($data1=mysql_fetch_array($andhraSMSSSIsql)) {
 </form>
 </div>
 <footer class="">
-<div class="container-fluid">
-	<div class="col-md-4 text-center">
-    	<h3>Contact Us</h3>
-        <div>Land Line : +91 (08644) 228465, 227677</div>
-        <div>Mobile Number : 09848128465</div>
-    </div>
-    <div class="col-md-4 text-center">
-    	<h3>Email</h3>
-        <div>deeptipublications@gmail.com</div>
-    </div>
-    <div class="col-md-4 text-center">
-    	<h3>Address</h3>
-        <div>22-7-38, Kothapet, TENALI - 522201</div>
-        <div>Andhra Pradesh</div>
-    </div>
-</div>
+<?php include("./footer.php"); ?>
+
 </footer>
 </body>
 </html>
     <!-- Placed at the end of the document so the pages load faster -->
         <script src="./supportfiles/jquery.min.js"></script>    
     <script src="./supportfiles/bootstrap.min.js"></script>
+    <script type="text/javascript">
+				  $(this).find('input[type=text], select').each(function(){
+            if($(this).val() != "") valid+=1;
+        });
+</script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./supportfiles/ie10-viewport-bug-workaround.js"></script>
    
